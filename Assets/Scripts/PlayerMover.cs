@@ -12,6 +12,7 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private GroundChecker _groundCheker;
 
+    private readonly int _animatorSpeedHash = Animator.StringToHash("Speed");
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -49,14 +50,14 @@ public class PlayerMover : MonoBehaviour
         else
         {
             _motionVector = Vector2.zero;
-            _animator.SetFloat("Speed", Mathf.Abs(_motionVector.x));
+            _animator.SetFloat(_animatorSpeedHash, Mathf.Abs(_motionVector.x));
         }
     }
 
     public void Move(Vector2 moveDirection)
     {
         transform.Translate(moveDirection * _moveSpeed * Time.deltaTime);
-        _animator.SetFloat("Speed", Mathf.Abs(_motionVector.x));
+        _animator.SetFloat(_animatorSpeedHash, Mathf.Abs(_motionVector.x));
 
         if (_motionVector.x > 0 && _isLooksRight == false)
             Flip();
