@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    private bool _isOnGround;
-
-    public bool IsGround => _isOnGround;
+    public bool IsGround {get; private set;}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
-            _isOnGround = true;
+            IsGround = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision != null)
-            _isOnGround = false;
+            IsGround = false;
     }
 }
